@@ -1,9 +1,9 @@
 # pc-programming-2
 
-subject BPC-PC2T
-author: Mojmír Begán
-year: 2022/23
-group: TLI-01
+##subject BPC-PC2T
+##author: Mojmír Begán
+##year: 2022/23
+##group: TLI-01
 
 ### Project
 
