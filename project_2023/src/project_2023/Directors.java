@@ -1,38 +1,27 @@
 package project_2023;
 
 public class Directors extends People{
-	Directors (String name, String role){
+	Directors (String name, Roles role){
 		super(name, role);
 	}
 
 	@Override
-	void AddActor(String name, String role) {
-		// TODO Auto-generated method stub
-		
+	void AddActor(String name) {
 	}
-
-	@Override
-	void UpgradeActor(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	void DeleteActor(String name) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	void PrintAll() {
-		// TODO Auto-generated method stub
-		
+	void PrintAll() {		
 	}
-
 	@Override
-	void PrintAllMore() {
+	public String toString() {
 		// TODO Auto-generated method stub
-		
+		return ("Director: " + GetName());
 	}
+	
+	
+	
 
 }

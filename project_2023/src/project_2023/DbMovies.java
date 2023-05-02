@@ -1,16 +1,29 @@
 package project_2023;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 //Class for creation of database for movies and work with it
-public class DbMovies implements TypeM{
+public class DbMovies<T> implements TypeM{
 	private String name;
-	private String genre;
-	private String director;
+	private Genres genre;
+	private Directors director;
 	private int year;
+	private List<Actors> listOfActors = new ArrayList<Actors>();	
+	private List<Comments> listOfComments = new ArrayList<Comments>();
+	private Map<String, DbMovies> collectionOfMovies;
 	//Common constructor	
-	DbMovies (String name, String genre, String director, int year){
+	DbMovies (String name, Genres genre, Directors director, int year, List<Actors> listOfActors, List<Comments> listOfComments){
 		this.name = name;
 		this.genre = genre;
 		this.director = director;
 		this.year = year;
+		this.listOfActors = listOfActors;
+		this.listOfComments = listOfComments;
+	}
+	public DbMovies(){
+		collectionOfMovies = new HashMap<String, DbMovies>();
 	}
 	//Getters and Setters
 	@Override
@@ -18,12 +31,13 @@ public class DbMovies implements TypeM{
 		this.name = name;
 	}
 	@Override
-	public void SetGenre(String genre) {
+	public void SetGenre(Genres genre) {
 		this.genre = genre;
 	}
+	
 	@Override
-	public void SetDirector(String director) {
-		this.director = director;
+	public void SetDirector(String name) {		
+		director.SetName(name);
 	}
 	@Override
 	public void SetYear(int year) {
@@ -36,12 +50,12 @@ public class DbMovies implements TypeM{
 		return name;
 	}
 	@Override
-	public String GetGenre() {
+	public Genres GetGenre() {
 		// TODO Auto-generated method stub
 		return genre;
 	}
 	@Override
-	public String GetDirector() {
+	public Directors GetDirector() {
 		// TODO Auto-generated method stub
 		return director;
 	}
@@ -50,10 +64,17 @@ public class DbMovies implements TypeM{
 		// TODO Auto-generated method stub
 		return year;
 	}
-	@Override
-	public void AddMovie() {
+	public List<Actors> GetActors() {
 		// TODO Auto-generated method stub
-		
+		return listOfActors;
+	}
+	public List<Comments> GetComments() {
+		// TODO Auto-generated method stub
+		return listOfComments;
+	}	
+	public void AddMovie(String name, Genres genre, Directors director, int year, List<Actors> listOfActors, List<Comments> listOfComments) {
+		// TODO Auto-generated method stub
+		collectionOfMovies.put(name, new DbMovies(name, genre, director, year, listOfActors, listOfComments));
 	}
 	@Override
 	public void UpgradeMovie() {
@@ -61,19 +82,25 @@ public class DbMovies implements TypeM{
 		
 	}
 	@Override
-	public void DeleteMovie() {
+	public void DeleteMovie(String name) {
 		// TODO Auto-generated method stub
-		
+		collectionOfMovies.remove(name);
 	}
 	@Override
 	public void PrintAll() {
 		// TODO Auto-generated method stub
-		
+		Set<String> list = collectionOfMovies.keySet();
+		for (String name: list) {
+			System.out.println(collectionOfMovies.get(name).toString());
+		}
 	}
 	@Override
 	public void PrintAllSame() {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	@Override
+	public String toString() {
+		return ("Title: " + GetName() + "\n" + director.toString() + "\n" + "Year: " + GetYear() + "\n" + "Genre: " + GetGenre() + "\n" + listOfActors.toString() + "\n" + listOfComments.toString());		
+	}
 }

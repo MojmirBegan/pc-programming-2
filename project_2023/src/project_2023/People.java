@@ -2,11 +2,12 @@ package project_2023;
 //Class for Actors, Animators, Directors
 public abstract class People {
 	private String name;
-	private String role;
+	
+	private Roles roles;
 	//Common constructor
-	People (String name, String role){
-		this.name = name;
-		this.name = role;		
+	People (String name, Roles roles){
+		this.name = name;		
+		this.roles= roles;
 	}
 	//Getters and Setters
 	void SetName(String name) {
@@ -14,21 +15,18 @@ public abstract class People {
 	}
 	String GetName() {
 		return name;
+	}		
+	void SetRole(Roles roles) {
+		this.roles = roles;
 	}
-	void SetRole(String role) {
-		this.role = role;
-	}
-	String GetRole() {
-		return role;
-	}
+	Roles GetRole() {
+		return roles;
+	}	
 	//Function for add actor
-	abstract void AddActor (String name, String role);
-	//Function for upgrade info about actor
-	abstract void UpgradeActor (String name);
+	abstract void AddActor (String name);	
 	//Function for delete actor 
 	abstract void DeleteActor (String name);
 	//Function for print database of actor
-	abstract void PrintAll ();
-	//Function for print actors who have played in more than one movie
-	abstract void PrintAllMore ();
+	abstract void PrintAll ();	
+	public abstract String toString();
 }

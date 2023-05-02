@@ -1,37 +1,45 @@
 package project_2023;
 
-public class Actors extends People{
-	Actors (String name, String role){
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class Actors<T> extends People{	
+	List<Actors> listOfActors = new ArrayList<Actors>();	
+	Actors (String name, Roles role){
 		super(name, role);
-	}
-
+	}	
 	@Override
-	void AddActor(String name, String role) {		
-		
+	void AddActor(String name) {
+		listOfActors.add(new Actors(name, Roles.ACTOR));
 	}
-
-	@Override
-	void UpgradeActor(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	void DeleteActor(String name) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < listOfActors.size(); i++) {
+			if (listOfActors.get(i).GetName() == name) {
+				listOfActors.remove(i);
+			}
+		}
 	}
-
+	public void Sort() {
+		Collections.sort(listOfActors, Comparator.comparing(Actors::GetName));
+	}
 	@Override
 	void PrintAll() {
-		// TODO Auto-generated method stub
-		
-	}
-
+		// TODO Auto-generated method stub	
+		Sort();
+		System.out.println("All Actors: ");
+		for (int i = 0; i < listOfActors.size(); i++) {
+		System.out.println(listOfActors.get(i).toString());
+		}
+	}	
 	@Override
-	void PrintAllMore() {
+	public String toString() {
 		// TODO Auto-generated method stub
-		
+		return (GetRole() + ": " + GetName());
 	}
 
 }
